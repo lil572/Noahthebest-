@@ -1,0 +1,48 @@
+forEach(b => b.onclick = null);
+
+  if (idx === q.correct) {
+    btn.classList.add('correct');
+    document.getElementById('quizFeedback').textContent = '✅ Correct! You passed!';
+
+    if (currentQ < questions.length - 1) {
+      setTimeout(() => {
+        currentQ++;
+        loadQuestion();
+      }, 1200);
+    } else {
+      // All correct!
+      spawnConfetti(40);
+      spawnHearts();
+      document.getElementById('quizFeedback').textContent = '🎉 PERFECT SCORE! You\'re incredible!';
+      document.getElementById('quizNextBtn').style.display = 'inline-block';
+    }
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.correct].classList.add('correct');
+    document.getElementById('quizFeedback').textContent = '❌ Nope! Back to the start you go...';
+    setTimeout(() => {
+      document.getElementById('retryBtn').style.display = 'inline-block';
+    }, 800);
+  }
+}
+
+function resetQuiz() {
+  currentQ = 0;
+  loadQuestion();
+}
+
+// ===== PAGE 4 - ENVELOPE =====
+let envelopeOpened = false;
+function openEnvelope() {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+  document.getElementById('envelope').classList.add('open');
+  setTimeout(() => {
+    document.getElementById('letterContent').classList.add('show');
+    spawnConfetti(50);
+    spawnHearts();
+  }, 700);
+}
+</script>
+</body>
+</html>
